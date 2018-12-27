@@ -1,0 +1,74 @@
+NOTE: The first part of the JSX tag determines the type of the React element and capitalized types indicate that the JSX tag is referring to a React component
+
+NOTE: These tags get compiled into a direct reference to the named variable, so if the JSX <Foo /> expression is used, Foo must be in scope:
+
+<MyButton color="blue" shadowSize={2}>
+  Click Me
+</MyButton>
+
+NOTE: In the example below, the JSX above compiles to:
+
+React.createElement(
+  MyButton,
+  {color: 'blue', shadowSize: 2},
+  'Click Me'
+)
+
+NOTE: Self-closing form of the tag can be used if there're no children
+
+NOTE: User-defined components must be capitalized
+
+NOTE: Pass any JavaScript expression as a prop, by surrounding it with {}:
+
+<MyComponent foo={1 + 2 + 3 + 4} />
+
+NOTE: If statements and for loops are not expressions in JavaScript, so they can't be used in JSX directly. Instead, put these in the surrounding code. For example:
+
+function NumberDescriber(props) {
+  let description;
+  if (props.number % 2 == 0) {
+    description = <strong>even</strong>;
+  } else {
+    description = <i>odd</i>;
+  }
+  return <div>{props.number} is an {description} number</div>;
+}
+
+NOTE: Pass a string literal as a prop. These two JSX expressions are equivalent:
+
+<MyComponent message="hello world" />
+
+<MyComponent message={'hello world'} />
+
+NOTE: Props Default to "True". If you pass no value for a prop, it defaults to true. These two JSX expressions are equivalent:
+
+<MyTextBox autocomplete />
+
+<MyTextBox autocomplete={true} />
+
+NOTE: The above example is not recommend.
+
+NOTE: If the props are an object, and needs to passed into JSX, you can use ... as a "spread" operator to pass the whole props object. These two components are equivalent:
+
+function App1() {
+  return <Greeting firstName="Ben" lastName="Hector" />;
+}
+
+function App2() {
+  const props = {firstName: 'Ben', lastName: 'Hector'};
+  return <Greeting {...props} />;
+}
+
+NOTE: In JSX expressions that contain both an opening tag and a closing tag, the content between those tags is passed as a special prop: props.children. There are several different ways to pass children:
+
+<MyComponent>Hello world!</MyComponent>
+
+NOTE:  If a value like false, true, null, or undefined needs to appear in the output, convert it to a string first:
+
+<div>
+  My JavaScript variable is {String(myVariable)}.
+</div>
+
+NOTE: props.children works just like any other prop in that it can pass any sort of data
+
+NOTE: Put curly brackets {} to write comments within children section of a tag. 
